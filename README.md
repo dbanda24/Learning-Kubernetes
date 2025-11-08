@@ -47,20 +47,20 @@ Install kubeadm, kubelet, and kubectl.
 The old repository (https://apt.kubernetes.io kubernetes-xenial) is deprecated. Use the new pkgs.k8s.io repository instead.
 
 #### 5.1: Add the Kubernetes APT Repository (New Method)
-# Create a keyring directory
+##### Create a keyring directory
 ```bash
 sudo mkdir -p /etc/apt/keyrings
 ```
-# Download and add the Kubernetes repository GPG key
+##### Download and add the Kubernetes repository GPG key
 curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.34/deb/Release.key | \
   sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
 
-# Add the Kubernetes repository
+##### Add the Kubernetes repository
 echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] \
 https://pkgs.k8s.io/core:/stable:/v1.34/deb/ /" | \
 sudo tee /etc/apt/sources.list.d/kubernetes.list
 
-# Update package list
+##### Update package list
 ```bash
 sudo apt update
 ```
@@ -129,14 +129,16 @@ source ~/.bashrc
 Troubleshooting Tips
 1. Reset the Cluster
 If the installation fails, reset kubeadm and try again:
-
+```bash
 sudo kubeadm reset -f
 sudo rm -rf $HOME/.kube
+```
 2. Check Logs
 Use the following commands to troubleshoot issues:
-
+```
 journalctl -xeu kubelet
 kubectl describe pod <pod-name> -n kube-system
+```
 ✅ This guide is now compatible with modern Ubuntu (20.
 
 ## **Issue**
